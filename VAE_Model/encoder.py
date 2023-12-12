@@ -9,7 +9,7 @@ class encoder(nn.Module):
         self.fc1 = nn.Linear(784, h_dim)
         self.fc21 = nn.Linear(h_dim, z_dim)
         self.fc22 = nn.Linear(h_dim, z_dim)
-        self.softplus = nn.softplus()
+        self.softplus = nn.Softplus()
 
     def forward(self, x):
         x = x.reshape(-1, 784)
