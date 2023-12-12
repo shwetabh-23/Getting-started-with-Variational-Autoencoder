@@ -1,11 +1,11 @@
-from encoder import encoder
-from decoder import decoder
+from .encoder import encoder
+from .decoder import decoder
 import torch.nn as nn
 import pyro.distributions as distributions
 import pyro
 import torch
 
-class vae(nn.module):
+class vae(nn.Module):
     def __init__(self, z_dim = 30, h_dim = 400, use_cuda = False):
         super(vae, self).__init__()
         self.z_dim = z_dim

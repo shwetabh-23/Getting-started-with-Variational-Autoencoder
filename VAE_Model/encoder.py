@@ -3,7 +3,7 @@ import pyro
 import pyro.distributions as dist
 import torch.nn as nn
 
-class encoder(nn.module):
+class encoder(nn.Module):
     def __init__(self, z_dim, h_dim):
         super(encoder, self).__init__()
         self.fc1 = nn.Linear(784, h_dim)
