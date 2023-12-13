@@ -16,7 +16,7 @@ class encoder(nn.Module):
         l1 = self.fc1(x)
         l2 = self.softplus(l1)
         mean = self.fc21(l2)
-        var = self.fc22(l2)
+        var = self.softplus(self.fc22(l2))
 
         return mean, var
     

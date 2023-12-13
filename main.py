@@ -1,5 +1,5 @@
 from Data import loaders, show_images
-from VAE_Model import vae, MonitorLoss, train_vae, evaluate_vae
+from VAE_Model import vae, MonitorLoss, train_vae, evaluate_vae, compare_images
 
 import torch
 import torch.nn as nn
@@ -23,7 +23,7 @@ h_dim = 400
 
 data_path = r'D:\ML-Projects\Getting-started-with-Variational-Autoencoder\Data\Raw Data'
 train_loader, test_loader = loaders(data_path=data_path, batch_size=16, use_cuda=cuda)
-
+# breakpoint()
 vae = vae(z_dim=z_dim, h_dim=h_dim, use_cuda=cuda)
 optimizer = Adam({'lr' : lr})
 svi = SVI(model=vae.model, guide=vae.guide, optim=optimizer, loss=Trace_ELBO())
@@ -38,4 +38,5 @@ for epoch in range(epochs):
 
 if not SMOKE_TEST:
     loss_monitor.show_loss()
-    
+    compare_images(vae=vae, test_loader=test_loader, original_images=5, generated_images=5)
+vae.encoder.freeze()

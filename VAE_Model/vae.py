@@ -25,7 +25,9 @@ class vae(nn.Module):
 
             z = pyro.sample('latent', distributions.Normal(loc=z_loc, scale=z_var).to_event(1))
             img = self.decoder.forward(z)
-            pyro.sample('observed', distributions.Bernoulli(img).to_event(1), obs = x.reshape(-1, 784))
+            #print(img)
+            #breakpoint()
+            pyro.sample('observed', distributions.Bernoulli(img).to_event(1))
 
     def guide(self, x):
         pyro.module('encoder', self.encoder)

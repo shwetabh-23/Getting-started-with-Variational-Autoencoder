@@ -11,7 +11,7 @@ class decoder(nn.Module):
 
     def forward(self, z):
         l1 = self.softplus(self.fc1(z))
-        l2 = self.sigmoid(self.fc21(l1))
+        l2 = self.sigmoid(self.fc2(l1))
 
         return l2
     
